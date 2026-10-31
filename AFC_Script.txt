@@ -1,0 +1,31 @@
+
+# Création du tableau de contingence
+tableau <- matrix(
+  c(45, 25, 30,
+    20, 45, 35,
+    30, 30, 40,
+    15, 60, 25),
+  nrow = 4,
+  byrow = TRUE
+)
+
+# Ajouter les noms des lignes et des colonnes
+rownames(tableau) <- c("Sciences", "Lettres", "Economie", "Ingenierie")
+colnames(tableau) <- c("Presentiel", "Distanciel", "Hybride")
+
+# Afficher le tableau
+tableau
+
+
+# Charger les bibliothèques
+library(FactoMineR)
+library(factoextra)
+
+# Réaliser l'AFC
+res <- CA(tableau, graph = FALSE)
+
+# Afficher les valeurs propres et les inerties
+print(res$eig)
+
+# Tracer le plan factoriel
+fviz_ca_biplot(res, repel = TRUE)
