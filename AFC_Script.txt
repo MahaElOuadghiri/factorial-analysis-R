@@ -1,6 +1,6 @@
-
-# Création du tableau de contingence
-tableau <- matrix(
+```r
+# Create the contingency table
+contingency_table <- matrix(
   c(45, 25, 30,
     20, 45, 35,
     30, 30, 40,
@@ -9,23 +9,29 @@ tableau <- matrix(
   byrow = TRUE
 )
 
-# Ajouter les noms des lignes et des colonnes
-rownames(tableau) <- c("Sciences", "Lettres", "Economie", "Ingenierie")
-colnames(tableau) <- c("Presentiel", "Distanciel", "Hybride")
+# Add row and column names
+rownames(contingency_table) <- c(
+  "Sciences", "Arts and Humanities", "Economics", "Engineering"
+)
 
-# Afficher le tableau
-tableau
+colnames(contingency_table) <- c(
+  "In-person", "Distance Learning", "Hybrid"
+)
+
+# Display the contingency table
+print(contingency_table)
 
 
-# Charger les bibliothèques
+# Load the libraries
 library(FactoMineR)
 library(factoextra)
 
-# Réaliser l'AFC
-res <- CA(tableau, graph = FALSE)
+# Perform Correspondence Analysis (CA)
+res <- CA(contingency_table, graph = FALSE)
 
-# Afficher les valeurs propres et les inerties
+# Display eigenvalues and inertia
 print(res$eig)
 
-# Tracer le plan factoriel
+# Plot the factorial map
 fviz_ca_biplot(res, repel = TRUE)
+```
